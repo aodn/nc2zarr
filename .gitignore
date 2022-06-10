@@ -1,3 +1,6 @@
+# Ignore inputs folder
+inputs
+
 fs-config.yml
 nc2zarr-config.yml
 *.zarr/
