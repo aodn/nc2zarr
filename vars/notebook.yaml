@@ -13,7 +13,7 @@ Resources:
     CloudformationTemplateURL: ../../nc2zarr/cloudformation/wps-cloudformation-template.yaml
     Parameters:
       dockerImage: 615645230945.dkr.ecr.ap-southeast-2.amazonaws.com/javaduck:latest
-      wpsDomainName: {stack_name}-wps
+      wpsDomainName: wps-{stack_name}
       geoserver: http://geoserver-123.aodn.org.au/geoserver/imos/ows
       templatesURL: https://raw.githubusercontent.com/aodn/geoserver-config/production/wps/templates.xml
       geonetworkCatalogueURL: http://catalogue-portal.aodn.org.au/geonetwork
