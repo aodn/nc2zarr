@@ -2,6 +2,17 @@ Resources:
   notebook:
     CloudformationTemplateURL: ../../nc2zarr/cloudformation/notebook.yaml
 
+  databucket:
+    CloudformationTemplateURL: ../../nc2zarr/cloudformation/databucket-template.yaml
+    Parameters:
+      BucketNamePrefix: s3-{stack_name}
+      CreateCNAME: "true"
+    Endpoint: s3-{stack_name}.{dns_suffix}
+
+Lambdas:
+  - crhelper
+  - emptybucket
+
 parent_stack_enabled: false
 
 StackTags:
