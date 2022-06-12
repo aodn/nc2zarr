@@ -45,8 +45,3 @@ Resources:
             echo "Starting the SageMaker autostop script in cron"
             
             (crontab -l 2>/dev/null; echo "*/5 * * * * /usr/bin/python $PWD/autostop.py --time $IDLE_TIME --ignore-connections") | crontab -
-            
-            # install requirements for nc2zarr
-            sudo -u ec2-user -i <<'EOF'
-            source activate conda_mxnet_latest_p37
-            pip install -r https://raw.githubusercontent.com/vietnguyengit/nc2zarr/main/requirements.txt
