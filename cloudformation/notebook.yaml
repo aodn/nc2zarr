@@ -55,7 +55,7 @@ Resources:
 #            # install conda env
 #            cd ~
 #            conda activate base
-#            conda update -n base --force conda
+#            yes | conda update -n base --force conda
 #            conda install -n base -c conda-forge mamba
 #            cd SageMaker/nc2zarr
 #            mamba env create
