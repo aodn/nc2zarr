@@ -19,7 +19,7 @@ Resources:
       geonetworkCatalogueURL: http://catalogue-portal.aodn.org.au/geonetwork
       sourceArn: arn:aws:ses:us-east-1:615645230945:identity/aodn.org.au
       AllowEphemeralBuckets: 'true'
-      dataDownloadUrlPrefix: http://s3-{stack_name}.s3-website-ap-southeast-2.amazonaws.com/
+      dataDownloadUrlPrefix: http://s3-{stack_name}.{dns_suffix}.s3-website-ap-southeast-2.amazonaws.com/
     Endpoint: ''
 
 Lambdas:
