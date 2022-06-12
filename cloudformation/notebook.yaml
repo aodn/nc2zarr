@@ -49,7 +49,7 @@ Resources:
 #            # install requirements for nc2zarr
 #            sudo -u ec2-user -i <<'EOF'
 #            source activate mxnet_latest_p37
-#            cd SageMaker/nc2zarr
+#            cd ~/SageMaker/nc2zarr
 #            pip install -r requirements.txt
             
 #            # install conda env
@@ -57,11 +57,10 @@ Resources:
 #            conda activate base
 #            yes | conda update -n base --force conda
 #            yes | conda install -n base -c conda-forge mamba
-#            cd SageMaker/nc2zarr
+#            cd ~/SageMaker/nc2zarr
 #            mamba env create
 #
 #            conda activate nc2zarr
-#            cd SageMaker/nc2zarr/nc2zarr
 #            python setup.py develop
 #
 #            # generate tests
