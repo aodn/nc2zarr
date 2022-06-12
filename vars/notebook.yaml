@@ -1,0 +1,8 @@
+Resources:
+  notebook:
+    CloudformationTemplateURL: ../../nc2zarr/cloudformation/notebook.yaml
+
+parent_stack_enabled: false
+
+StackTags:
+  AutoOff: 'False'

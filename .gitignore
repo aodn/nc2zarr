@@ -1,5 +1,9 @@
-# Ignore inputs folder
+# Ignore some nc2zarr generated folders
 inputs
+outputs
+nc2zarr.egg-info
+htmlcov
+.pytest_cache
 
 fs-config.yml
 nc2zarr-config.yml
