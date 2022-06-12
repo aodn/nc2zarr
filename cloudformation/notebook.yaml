@@ -53,6 +53,7 @@ Resources:
             pip install -r requirements.txt
             
             # install conda env
+            cd ~
             conda activate base
             conda update -n base --force conda
             conda install -n base -c conda-forge mamba
