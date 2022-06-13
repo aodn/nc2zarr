@@ -1,0 +1,260 @@
+# The MIT License (MIT)
+# Copyright (c) 2021 by Brockmann Consult GmbH and contributors
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is furnished to do
+# so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+#############################################################################
+# Configuration file template for the nc2zarr CLI tool.                     #
+#                                                                           #
+# Usage                                                                     #
+#                                                                           #
+#   nc2zarr --config CONFIG_FILE                                            #
+#                                                                           #
+# For more information                                                      #
+#                                                                           #
+#   nc2zarr --help                                                          #
+#                                                                           #
+#############################################################################
+
+# No actual output is written.
+# Good for testing validity of configurations.
+dry_run: false
+
+# Verbosity of logging: 0 is off, 1 is basic, 2 is extended information.
+verbosity: 0
+
+# Configuration of inputs
+input:
+
+  # Input paths. May be passed as globs,
+  # i.e. a path may contain '**', '*', and '?' wildcards.
+  paths:
+    - <input_path_or_glob_1>
+    - <input_path_or_glob_2>
+
+  # Sort resolved paths list.
+  # - "name": sorts by file name
+  # - "path": sorts by whole path
+  # - null: no sorting, order as provided; globbed paths in arbitrary order
+  sort_by: null
+
+  # Select given variables only. Comment out or set to null for all variables.
+  variables:
+    - <var_name_1>
+    - <var_name_2>
+
+  # An optional custom preprocessor.
+  # Called after variable selection.
+  # The Python module containing the preprocessor function must be on the
+  # Python search path. If nc2zarr can't find it, add the parent directory of
+  # the Python module to the PYTHONPATH environment variable before running
+  # nc2zarr.
+  custom_preprocessor: <module>:<function>
+
+  # Read all input files as one block?
+  # - true: Uses xarray.open_mfdataset(paths, ...)
+  # - false: Uses xarray.open_dataset(paths[i], ...)
+  multi_file: false
+
+  # Optional: name of dimension to be used for concatenation if multi_file is
+  # true. If concat_dim is supplied, opened files will be combined using
+  # xarray.open_mfdataset's "nested" mode; if concat_dim is omitted or set
+  # to None, xarray.open_mfdataset's "by_coords" mode will be used instead.
+  concat_dim: "time"
+
+  # xarray engine used for opening the dataset
+  engine: "netcdf4"
+
+  # Whether to decode inputs according to CF conventions.
+  # This is off by default, because we don't want any data interpretation.
+  decode_cf: false
+
+  # Optional date-time format when parsing time information from
+  # a dataset's attributes such as "time_coverage_start", "time_coverage_end".
+  # Most formats should be automatically detected, e.g. "20150101T103018Z"
+  # or "2015-01-01 10:30:18".
+  # For the format syntax please refer to
+  # https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
+  datetime_format: null
+
+  # Open one input to fetch internal chunking, if any.
+  # Then use this chunking to open all input files (and
+  # force using Dask arrays).
+  # This may slow down the process slightly, but may be
+  # required to avoid memory problems for very large inputs.
+  prefetch_chunks: false
+
+# Configuration of input to output processing
+process:
+
+  # Rename variables
+  rename:
+    <var_name_1>: <new_var_name_1>
+    <var_name_2>: <new_var_name_2>
+
+  # An optional custom processor.
+  # Called after variable renaming and before rechunking.
+  # See comments on the custom_preprocessor option for information on setting
+  # the search path for the module.
+  custom_processor: <module>:<function>
+
+  # (Re)chunk variable dimensions
+  rechunk:
+    # For all variables:
+    "*":
+      # Set chunk size for <dim_name_1> to <chunk_size>.
+      <dim_name_1>: <chunk_size>
+      # Set chunk size for <dim_name_2> to dimension size.
+      <dim_name_2>: null
+      # Make chunk size for <dim_name_3> same as input.
+      <dim_name_3>: "input"
+    # For variable <var_name>:
+    <var_name_1>:
+      # Set chunk size for <dim_name_1> to <chunk_size>.
+      <dim_name_1>: <chunk_size>
+      # Set chunk size for <dim_name_2> to dimension size.
+      <dim_name_2>: null
+      # Make chunk size for <dim_name_3> same as input.
+      <dim_name_3>: "input"
+    # Set chunk size for all dimensions of <var_name_2> to <chunk_size>.
+    <var_name_2>: <chunk_size>
+    # Set chunk size for all dimensions of <var_name_2> to dimension size.
+    <var_name_3>: null
+    # Make chunk size for all dimensions of <var_name_4> same as input.
+    <var_name_4>: "input"
+
+
+# Configuration of output
+output:
+  # If output is in object storage is given this is a relative path
+  # "<bucket_name>/path/to/my.zarr" or "s3://<bucket_name>/path/to/my.zarr".
+  # Otherwise it may be any local FS directory path.
+  path: <output_path>
+
+  # An optional custom post-processor.
+  # Called before the data is written.
+  # See comments on the custom_preprocessor option for information on setting
+  # the search path for the module.
+  custom_postprocessor: <module>:<function>
+
+  # The "consolidated" keyword argument passed to xarray.Dataset.to_zarr().
+  # Experimental Zarr feature. Improves access performance
+  # for targets in object storage.
+  consolidated: false
+
+  # The "encoding" keyword argument passed to xarray.Dataset.to_zarr()
+  # This is a mapping of variable names to variable encoding info.
+  encoding: null
+
+  # Overwrite existing dataset?
+  overwrite: false
+
+  # Append to existing dataset?
+  # If there is no existing dataset, this option has no effect (i.e.
+  # the dataset will be created whether "append" is true or false).
+  append: false
+
+  # Append dimension. Defaults to input/concat_dim or "time".
+  append_dim: null
+
+  # Controls the behaviour when appending data which overlap in the
+  # append dimension with the existing data. When the data do not overlap,
+  # all current append modes produce identical behaviour: adding the
+  # appended data directly to the end of the current append dimension.
+  # When appending non-overlapping data, there is only one expected
+  # behaviour: it's added to the end of the existing dataset along the
+  # append axis. Permitted values are as follows:
+  #
+  # "all":            Assume data to be appended is always newer than
+  #                   existing data and the append_dim coordinates are
+  #                   monotonically increasing, and add the new data as a block
+  #                   to the end of the existing data. This is the default.
+  # "no_overlap":     Overlapping data is treated as a "should never happen"
+  #                   event, an error is thrown, and no data is modified.
+  # "newer":          Any appended data steps falling within the existing range
+  #                   of append dimension values is ignored and thrown away.
+  #                   The rest are appended.
+  # "replace":        New data are inserted at their correct position in the
+  #                   existing data. For data points with identical values in
+  #                   the append dimension, the old data are replaced with the
+  #                   new data.
+  # "retain":         New data are inserted at their correct position in the
+  #                   existing data. For data points with identical values in
+  #                   the append dimension, the old data are retained and the
+  #                   new data discarded.
+  append_mode: "all"
+
+  # Whether to adjust output metadata (global attributes)
+  # After the last write/append. This will adjust the
+  # following global attributes
+  # - "history"
+  # - "source"
+  # - "time_coverage_start" (and "start_time" if existed before)
+  # - "time_coverage_end" (and "stop_time" if existed before)
+  adjust_metadata: false
+
+  # Extra metadata (global attributes) used to update
+  # after the last write/append.
+  metadata: { }
+
+  # Object storage file system configuration.
+  # If given, content are the keyword arguments passed to s3fs.S3FileSystem().
+  # See https://s3fs.readthedocs.io/en/latest/api.html#s3fs.core.S3FileSystem
+  # for documentation of available arguments.
+  s3:
+    # Anonymous access.
+    # - false: Access with credentials (default). Either key/secret must
+    #          be passed, or they are passed as environment variables, or,
+    #          in the case of AWS S3, credentials are read from
+    #          ~/.aws/credentials.
+    # - true: Access with credentials. key/secret are ignored. Bucket must
+    #         be publicly writable. (Which is almost always no good idea.)
+    anon: false
+    # Key identifier
+    key: null
+    # Secret access key
+    secret: null
+    # Optionally specify the object storage service in use.
+    # See https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client
+    client_kwargs:
+      # URL of the object storage endpoint.
+      # Must be set if object storage other than AWS S3 is used.
+      endpoint_url: null
+      # Optional name of the region where data is stored.
+      region_name: null
+    # Optionally specify additional arguments to be passed when calling the S3
+    # API. See request syntax descriptions at
+    # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#client
+    # for details of valid arguments.
+    s3_additional_kwargs:
+      # This ACL argument sets the access control list for the uploaded data.
+      # Setting to "public-read" makes the data publicly readable (provided
+      # that the bucket permissions allow this).
+      ACL: public-read
+
+  # Re-execute writing on errors
+  # Content are the keyword arguments for retry.api.retry_call(..., **retry).
+  # If not given, will fall back to {tries: 3, delay: 0.1, backoff: 1.1}.
+  retry:
+    # the maximum number of attempts. -1 means infinite.
+    tries: 3
+    # initial delay in seconds between attempts.
+    delay: 0.1
+    # multiplier applied to delay between attempts. 1.0 means no backoff.
+    backoff: 1.1
