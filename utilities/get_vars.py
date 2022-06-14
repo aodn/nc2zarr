@@ -6,7 +6,7 @@
 import netCDF4
 
 # Declare a netcdf file with path here
-netcdf_file = 'inputs/mooring/IMOS_DWM-ASFS_V_20100317T113000Z_SOFS_FV01_30m_END-20100721T180000Z_C-20120702T063213Z.nc'
+netcdf_file = ''
 
 # Declare to be dropped variables here
 dropped_vars = ['']
