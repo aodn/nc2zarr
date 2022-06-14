@@ -34,6 +34,9 @@ COPY requirements.txt /tmp/
 RUN python -m pip install --upgrade pip \
     && pip install --requirement /tmp/requirements.txt
 
+#RUN apt-get install libsqlite3-dev
+#RUN ./configure --enable-loadable-sqlite-extensions && make && sudo make install
+
 # Create the environment:
 COPY environment.yml /tmp/
 RUN conda env create -f /tmp/environment.yml

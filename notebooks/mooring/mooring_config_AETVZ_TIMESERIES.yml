@@ -1,0 +1,51 @@
+# validate this config, set false to actually produce zarr files
+dry_run: false
+
+# print out log - 0 1 2
+verbosity: 2
+
+# inputs
+input:
+  paths: ./inputs/mooring/IMOS_DWM-ASFS_AETVZ_*.nc
+  sort_by: path # set to name individual files instead of the whole path
+  # select variables from netcdf
+  variables:
+    - WCUR
+    - TEMP
+    - TIME
+    - VOLT
+    - ROLL
+    - PITCH
+    - ABSIC1
+    - ABSIC2
+    - ABSIC3
+    - PRES_REL
+    - LATITUDE
+#    - VCUR_MAG
+#    - UCUR_MAG
+    - LONGITUDE
+    - TIMESERIES
+#    - HEADING_MAG
+    - NOMINAL_DEPTH
+    - DIST_ALONG_BEAMS
+  # read input files as single block
+  multi_file: true
+  # concat dimension
+  concat_dim: "TIMESERIES"
+  # xarray engine
+  engine: "netcdf4"
+  # turn this on for very large inputs -> force using Dask array, avoid memory issues
+  prefetch_chunks: true
+
+# Configuration of input to output processing
+process:
+  rechunk:
+    "*":
+      TIME: 64
+    TIME: "input"
+
+# Configuration of output
+output:
+  path: ./outputs/mooring/test/AETVZ_TIMESERIES.zarr
+  consolidated: true
+  overwrite: true
