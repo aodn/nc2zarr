@@ -61,6 +61,7 @@ Resources:
             git clone https://github.com/vietnguyengit/nc2zarr.git
             cd nc2zarr
             python setup.py develop
+            export PYTHONPATH=${PYTHONPATH}:/home/ec2-user/SageMaker/nc2zarr/custom-processors
             source /home/ec2-user/anaconda3/bin/deactivate
             
             EOF
