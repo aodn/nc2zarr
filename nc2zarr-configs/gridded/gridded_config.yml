@@ -26,6 +26,7 @@ input:
 #    - wind_speed
 #    - sea_ice_fraction_dtime_from_sst
 #    - wind_speed_dtime_from_sst
+  custom_preprocessor: gridded_preprocessor:preprocess_time
   # read input files as single block
   multi_file: true
   # concat dimension

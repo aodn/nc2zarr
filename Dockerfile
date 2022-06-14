@@ -54,4 +54,6 @@ COPY notebooks/ ./notebooks/
 COPY nc2zarr-configs/ ./nc2zarr-templates/
 COPY custom-processors/ ./custom-processors/
 
+RUN export PYTHONPATH=${PYTHONPATH}:./custom-processors
+
 RUN mkdir /opt/app
