@@ -1,5 +1,5 @@
 # validate this config, set false to actually produce zarr files
-dry_run: false
+dry_run: true
 
 # print out log - 0 1 2
 verbosity: 2
@@ -10,18 +10,17 @@ input:
   sort_by: path # set to name individual files instead of the whole path
   # select variables from netcdf
   variables:
-    - PRES
+#    - PRES
 #    - TEMP
 #    - JULD
 #    - PSAL
-#    - JULD_QC
+##    - JULD_QC
 #    - PSAL_QC
 #    - PRES_QC
 #    - TEMP_QC
 #    - PI_NAME
     - LATITUDE
     - LONGITUDE
-    - N_PROF
 #    - PARAMETER
 #    - DATA_MODE
 #    - DIRECTION
@@ -75,10 +74,11 @@ input:
 #    - SCIENTIFIC_CALIB_COMMENT
 #    - SCIENTIFIC_CALIB_EQUATION
 #    - SCIENTIFIC_CALIB_COEFFICIENT
+  # custom_preprocessor: argo_preprocessor:preprocess_alignment
   # read input files as single block
   multi_file: true
   # concat dimension
-  concat_dim: "LATITUDE"
+  concat_dim: "LONGITUDE"
   # xarray engine
   engine: "netcdf4"
   # turn this on for very large inputs -> force using Dask array, avoid memory issues
