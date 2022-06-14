@@ -1,0 +1,42 @@
+# validate this config, set false to actually produce zarr files
+dry_run: true
+
+# print out log - 0 1 2
+verbosity: 2
+
+# inputs
+input:
+  paths:
+    - ./inputs/mooring/ANMN/Temperature/*.nc
+    - ./inputs/mooring/ANMN/Velocity/*.nc
+  sort_by: path # set to name individual files instead of the whole path
+  # select variables from netcdf
+  variables:
+    - TIME
+    - TEMP
+    - PITCH
+    - DEPTH
+    - LATITUDE
+    - LONGITUDE
+    - TIMESERIES
+  # read input files as single block
+  multi_file: true
+  # concat dimension
+  concat_dim: "TIME"
+  # xarray engine
+  engine: "netcdf4"
+  # turn this on for very large inputs -> force using Dask array, avoid memory issues
+  prefetch_chunks: true
+
+# Configuration of input to output processing
+process:
+  rechunk:
+    "*":
+      TIME: 365
+    TIME: "input"
+
+# Configuration of output
+output:
+  path: ./outputs/mooring/test/ANMN/Temp_Velocity.zarr
+  consolidated: true
+  overwrite: true

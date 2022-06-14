@@ -4,6 +4,7 @@ outputs
 nc2zarr.egg-info
 htmlcov
 .pytest_cache
+examples
 
 fs-config.yml
 nc2zarr-config.yml

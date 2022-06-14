@@ -51,6 +51,7 @@ RUN python setup.py develop
 
 # Copy notebooks and nc2zarr templates
 COPY notebooks/ ./notebooks/
-COPY nc2zarr-templates/ ./nc2zarr-templates/
+COPY nc2zarr-configs/ ./nc2zarr-templates/
+COPY custom-processors/ ./custom-processors/
 
 RUN mkdir /opt/app
