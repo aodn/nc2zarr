@@ -51,9 +51,12 @@ RUN python setup.py develop
 
 # Copy notebooks and nc2zarr templates
 COPY notebooks/ ./notebooks/
-COPY nc2zarr-configs/ ./nc2zarr-templates/
+COPY nc2zarr-configs/ ./nc2zarr-configs/
 COPY custom-processors/ ./custom-processors/
 
-RUN export PYTHONPATH=${PYTHONPATH}:./custom-processors
+# temp copy inputs folder
+# COPY inputs/ ./inputs/
+
+ENV PYTHONPATH "${PYTHONPATH}:/custom-processors"
 
 RUN mkdir /opt/app

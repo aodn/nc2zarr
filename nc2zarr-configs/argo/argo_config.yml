@@ -74,7 +74,7 @@ input:
 #    - SCIENTIFIC_CALIB_COMMENT
 #    - SCIENTIFIC_CALIB_EQUATION
 #    - SCIENTIFIC_CALIB_COEFFICIENT
-  # custom_preprocessor: argo_preprocessor:preprocess_alignment
+  custom_preprocessor: argo_preprocessor:preprocess_alignment
   # read input files as single block
   multi_file: true
   # concat dimension

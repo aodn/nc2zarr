@@ -12,3 +12,5 @@ blosc
 lz4
 cloudpickle==2.0.0
 pandas
+retry
+xarray[complete]
