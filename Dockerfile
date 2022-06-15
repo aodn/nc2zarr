@@ -31,12 +31,9 @@ RUN mamba install -y \
 
 # Install requirements.txt defined libraries
 COPY requirements.txt /tmp/
-RUN apt-get install gcc
+RUN apt-get update && apt-get -y install gcc vim nano libsqlite3-dev
 RUN python -m pip install --upgrade pip \
     && pip install --requirement /tmp/requirements.txt
-
-#RUN apt-get install libsqlite3-dev
-#RUN ./configure --enable-loadable-sqlite-extensions && make && sudo make install
 
 # Create the environment:
 COPY environment.yml /tmp/
@@ -44,10 +41,6 @@ RUN conda env create -f /tmp/environment.yml
 
 # Activate the environment, and make sure it's activated:
 RUN source activate nc2zarr
-
-# install vim and nano
-RUN apt-get update
-RUN apt-get install -y vim nano
 
 # Install nc2zarr
 WORKDIR ./nc2zarr
