@@ -1,4 +1,4 @@
-[![Build Status](https://ci.appveyor.com/api/projects/status/n8c8lhbvcbvg3mht/branch/main?svg=true)](https://ci.appveyor.com/project/bcdev/nc2zarr)
+![Build Status](https://github.com/vietnguyengit/nc2zarr/workflows/Create%20and%20publish%20a%20Docker%20image/badge.svg)
 
 # nc2zarr
 
