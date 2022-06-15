@@ -59,7 +59,7 @@ Resources:
             
             # activate nc2zarr env and set env variable
             source /home/ec2-user/anaconda3/bin/activate nc2zarr
-            conda env config vars set PYTHONPATH='/home/ec2-user/SageMaker/nc2zarr/custom-processors'
+            conda env config vars set PYTHONPATH='/home/ec2-user/SageMaker/nc2zarr/processors'
             
             # install nc2zarr
             git clone https://github.com/vietnguyengit/nc2zarr.git
