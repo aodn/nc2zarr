@@ -3,7 +3,7 @@ FROM $BASE_CONTAINER
 
 SHELL ["/bin/bash", "-c"]
 
-ARG python=3.8
+ARG python=3.7
 
 ENV PATH /opt/conda/bin:$PATH
 ENV PYTHON_VERSION=${python}
