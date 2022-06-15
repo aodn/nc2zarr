@@ -1,0 +1,16 @@
+# Ignore some nc2zarr generated folders
+inputs
+outputs
+nc2zarr.egg-info
+htmlcov
+.pytest_cache
+examples
+
+# IntelliJ
+.idea
+
+# Github stuff
+.github
+
+# Dockerfile itself
+Dockerfile

@@ -44,19 +44,18 @@ RUN conda env create -f /tmp/environment.yml
 # Activate the environment, and make sure it's activated:
 RUN source activate nc2zarr
 
+# install vim and nano
+RUN apt-get update
+RUN apt-get install -y vim nano
+
 # Install nc2zarr
-COPY nc2zarr/ ./nc2zarr/
-COPY setup.py .
+WORKDIR ./nc2zarr
+ENV PYTHONPATH "${PYTHONPATH}:/nc2zarr/processors"
+COPY . ./
 RUN python setup.py develop
 
-# Copy notebooks and nc2zarr templates
-COPY notebooks/ ./notebooks/
-COPY nc2zarr-configs/ ./nc2zarr-configs/
-COPY custom-processors/ ./custom-processors/
-
-# temp copy inputs folder
-# COPY inputs/ ./inputs/
-
-ENV PYTHONPATH "${PYTHONPATH}:/custom-processors"
+# set nc2zarr as default env
+RUN echo "source activate nc2zarr" > ~/.bashrc
+ENV PATH /opt/conda/envs/nc2zarr/bin:$PATH
 
 RUN mkdir /opt/app
