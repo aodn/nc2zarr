@@ -58,4 +58,9 @@ RUN python setup.py develop
 RUN echo "source activate nc2zarr" > ~/.bashrc
 ENV PATH /opt/conda/envs/nc2zarr/bin:$PATH
 
+COPY prepare.sh /usr/bin/prepare.sh
+
 RUN mkdir /opt/app
+
+RUN ["chmod", "+x", "/usr/bin/prepare.sh"]
+ENTRYPOINT ["tini", "-g", "--", "/usr/bin/prepare.sh"]
