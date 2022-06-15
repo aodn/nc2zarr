@@ -1,4 +1,4 @@
-![Build Status](https://github.com/vietnguyengit/nc2zarr/workflows/Build/badge.svg)
+[![Build Status](https://github.com/vietnguyengit/nc2zarr/workflows/Build/badge.svg)](https://github.com/vietnguyengit/nc2zarr/actions)
 
 # nc2zarr
 
