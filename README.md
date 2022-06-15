@@ -12,7 +12,7 @@ A Python tool that converts multiple NetCDF files to single Zarr datasets.
 
 * To use custom processors with `nc2zarr`, issue command:
 
-    `export PYTHONPATH=${PYTHONPATH}:/home/ec2-user/SageMaker/nc2zarr/custom-processors`
+    `export PYTHONPATH="${PYTHONPATH:+${PYTHONPATH}:}/home/ec2-user/SageMaker/nc2zarr/custom-processors"`
     
     Don't need to export `PYTHONPATH` if using `nc2zarr` from a Docker container.
 
