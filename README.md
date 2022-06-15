@@ -10,6 +10,10 @@ A Python tool that converts multiple NetCDF files to single Zarr datasets.
 
 * In SageMaker notebook instance, open a terminal tab, then activate `nc2zarr` env with `source activate nc2zarr`, then `cd` to working directory `cd SageMaker/nc2zarr`.
 
+* Accessing through a Docker container:
+    
+    `docker run -it <docker image> bash`
+
 * To use `nc2zarr`:
 
     `nc2zarr -c <path to config file>`
