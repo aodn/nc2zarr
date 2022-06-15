@@ -1,6 +1,7 @@
 xarray==0.20.0
 git+https://github.com/intake/kerchunk.git@0.0.5
 zarr
+click==8.0.4
 dask-cloudprovider==2021.9.0
 distributed==2021.9.0
 dask-cloudprovider==2021.9.0

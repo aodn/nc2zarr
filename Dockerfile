@@ -11,6 +11,7 @@ ENV PYTHON_VERSION=${python}
 RUN mamba install -y \
     python=${PYTHON_VERSION} \
     bokeh \
+    click==8.0.4 \
     nomkl \
     cmake \
     python-blosc \
