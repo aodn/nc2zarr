@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/vietnguyengit/nc2zarr/workflows/Build%20CI/badge.svg)](https://github.com/vietnguyengit/nc2zarr/actions)
+[![Build CI](https://github.com/vietnguyengit/nc2zarr/actions/workflows/docker_image_build_and_publish.yaml/badge.svg?branch=main)](https://github.com/vietnguyengit/nc2zarr/actions/workflows/docker_image_build_and_publish.yaml)
 
 # nc2zarr
 
