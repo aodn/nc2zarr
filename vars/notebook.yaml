@@ -9,24 +9,24 @@ Resources:
       CreateCNAME: "true"
     Endpoint: s3-{stack_name}.{dns_suffix}
 
-  awswps:
-    CloudformationTemplateURL: ../../nc2zarr/cloudformation/wps-cloudformation-template.yaml
-    Parameters:
-      dockerImage: 615645230945.dkr.ecr.ap-southeast-2.amazonaws.com/javaduck:latest
-      wpsDomainName: wps-{stack_name}
-      geoserver: http://geoserver-123.aodn.org.au/geoserver/imos/ows
-      templatesURL: https://raw.githubusercontent.com/aodn/geoserver-config/production/wps/templates.xml
-      geonetworkCatalogueURL: http://catalogue-portal.aodn.org.au/geonetwork
-      sourceArn: arn:aws:ses:us-east-1:615645230945:identity/aodn.org.au
-      AllowEphemeralBuckets: 'true'
-      dataDownloadUrlPrefix: http://s3-{stack_name}.{dns_suffix}.s3-website-ap-southeast-2.amazonaws.com/
-    Endpoint: ''
+#  awswps:
+#    CloudformationTemplateURL: ../../nc2zarr/cloudformation/wps-cloudformation-template.yaml
+#    Parameters:
+#      dockerImage: 615645230945.dkr.ecr.ap-southeast-2.amazonaws.com/javaduck:latest
+#      wpsDomainName: wps-{stack_name}
+#      geoserver: http://geoserver-123.aodn.org.au/geoserver/imos/ows
+#      templatesURL: https://raw.githubusercontent.com/aodn/geoserver-config/production/wps/templates.xml
+#      geonetworkCatalogueURL: http://catalogue-portal.aodn.org.au/geonetwork
+#      sourceArn: arn:aws:ses:us-east-1:615645230945:identity/aodn.org.au
+#      AllowEphemeralBuckets: 'true'
+#      dataDownloadUrlPrefix: http://s3-{stack_name}.{dns_suffix}.s3-website-ap-southeast-2.amazonaws.com/
+#    Endpoint: ''
 
 Lambdas:
   - crhelper
   - emptybucket
-  - s3prefix://imos-artifacts/promoted/aws-wps/systest?pattern=^.*job\-status\-service\-lambda\-package\.zip$&local_file=job-status-service-lambda-package.zip
-  - s3prefix://imos-artifacts/promoted/aws-wps/systest?pattern=^.*request\-handler\-lambda\-package\.zip$&local_file=request-handler-lambda-package.zip
+#  - s3prefix://imos-artifacts/promoted/aws-wps/systest?pattern=^.*job\-status\-service\-lambda\-package\.zip$&local_file=job-status-service-lambda-package.zip
+#  - s3prefix://imos-artifacts/promoted/aws-wps/systest?pattern=^.*request\-handler\-lambda\-package\.zip$&local_file=request-handler-lambda-package.zip
 
 StackTags:
   AutoOff: 'False'

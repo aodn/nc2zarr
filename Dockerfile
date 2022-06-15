@@ -31,6 +31,7 @@ RUN mamba install -y \
 
 # Install requirements.txt defined libraries
 COPY requirements.txt /tmp/
+RUN apt-get install gcc
 RUN python -m pip install --upgrade pip \
     && pip install --requirement /tmp/requirements.txt
 
