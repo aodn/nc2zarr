@@ -1,4 +1,4 @@
-![Build Status](https://github.com/vietnguyengit/nc2zarr/workflows/Create%20and%20publish%20a%20Docker%20image/badge.svg)
+![Build Status](https://github.com/vietnguyengit/nc2zarr/workflows/Build/badge.svg)
 
 # nc2zarr
 
