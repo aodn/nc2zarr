@@ -4,6 +4,24 @@
 
 A Python tool that converts multiple NetCDF files to single Zarr datasets.
 
+### Using nc2zarr on AWS stacks
+
+* Use stackman to deploy AWS stacks for this repo with Cloudformation.
+
+* In SageMaker notebook instance, open a terminal tab, then activate `nc2zarr` env with `source activate nc2zarr`, then `cd` to working directory `cd SageMaker/nc2zarr`.
+
+* To use custom processors with `nc2zarr`, issue command:
+
+    `export PYTHONPATH=${PYTHONPATH}:/home/ec2-user/SageMaker/nc2zarr/custom-processors`
+
+* To use `nc2zarr`:
+
+    `nc2zarr -c <path to config file>`
+
+----------
+
+## Below is original README.md from `nc2zarr` developers
+
 ### Create Python environment
 
     $ conda install -n base -c conda-forge mamba
