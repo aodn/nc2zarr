@@ -24,6 +24,10 @@ import os.path
 import warnings
 from typing import List, Optional, Iterator, Callable, Union, Dict, Hashable
 
+# to read S3 glob
+import s3fs
+s3 = s3fs.S3FileSystem(anon=False)
+
 import xarray as xr
 
 from .error import ConverterError
@@ -168,6 +172,10 @@ class DatasetOpener:
                 if not glob_result:
                     raise ConverterError(f'No inputs found for wildcard: "{input_path}"')
                 resolved_input_files.extend(glob_result)
+            elif 's3' in input_path:
+                # TODO: S3 stuff from here
+                # if S3 detects -> convert to glob
+                raise ConverterError(f'S3 inputs detected: "{input_path}"')
             else:
                 if not os.path.exists(input_path):
                     raise ConverterError(f'Input not found: "{input_path}"')
