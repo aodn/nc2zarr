@@ -39,7 +39,7 @@ RUN mamba install -y \
 
 # Install requirements.txt defined libraries
 COPY requirements.txt /tmp/
-RUN apt-get update && apt-get -y install gcc vim nano libsqlite3-dev
+RUN apt-get update && apt-get -y install gcc iputils-ping vim nano libsqlite3-dev
 RUN python -m pip install --upgrade pip \
     && pip install --requirement /tmp/requirements.txt
 
