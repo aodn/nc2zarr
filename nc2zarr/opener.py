@@ -121,11 +121,10 @@ class DatasetOpener:
             if 's3' in input_paths[i]:
                 input_file = s3.open(input_paths[i])
                 engine = 'h5netcdf'
-                LOGGER.info(f'Processing input {i + 1} of {n}: {input_paths[i]}')
             else:
                 input_file = input_paths[i]
                 engine = self._get_engine(input_file)
-                LOGGER.info(f'Processing input {i + 1} of {n}: {input_file}')
+            LOGGER.info(f'Processing input {i + 1} of {n}: {input_paths[i]}')
             with log_duration('Opening'):
                 ds = xr.open_dataset(input_file,
                                      engine=engine,
