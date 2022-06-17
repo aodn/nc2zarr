@@ -7,7 +7,7 @@ Resources:
     Type: AWS::SageMaker::NotebookInstance
     Properties:
       DefaultCodeRepository: https://github.com/vietnguyengit/nc2zarr.git
-      InstanceType: ml.r5.large
+      InstanceType: ml.r5.xlarge
       LifecycleConfigName: !GetAtt LifeCycleConfig.NotebookInstanceLifecycleConfigName
       NotebookInstanceName: !Ref AWS::StackName
       RoleArn: arn:aws:iam::615645230945:role/service-role/AmazonSageMaker-ExecutionRole-20210623T113797
