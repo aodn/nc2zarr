@@ -10,9 +10,9 @@ dependencies:
   - dask
   - fsspec
   - netcdf4
-  - h5netcdf
   - numpy
-  - pandas
+  - pandas==1.3.5
+  - h5netcdf
   - pyyaml
   - retry
   - s3fs >=2022.1.0
