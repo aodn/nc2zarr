@@ -8,6 +8,7 @@ dask-cloudprovider==2021.9.0
 jedi
 s3fs
 fsspec
+h5netcdf
 numcodecs
 blosc
 lz4
