@@ -6,7 +6,7 @@ verbosity: 2
 
 # inputs
 input:
-  paths: s3://imos-data/test.nc
+  paths: ./inputs/argo/1901126/profiles/*.nc
   sort_by: path # set to name individual files instead of the whole path
   # select variables from netcdf
   variables:
