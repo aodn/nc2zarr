@@ -32,7 +32,7 @@ input:
   # concat dimension
   concat_dim: "time"
   # xarray engine
-  engine: "netcdf4"
+  engine: "h5netcdf"
   # turn this on for very large inputs -> force using Dask array, avoid memory issues
   prefetch_chunks: true
 
