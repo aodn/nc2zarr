@@ -16,3 +16,4 @@ cloudpickle==2.0.0
 pickle5
 pandas==1.3.5
 retry
+xarray[complete]

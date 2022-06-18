@@ -59,6 +59,11 @@ Resources:
             
             # activate nc2zarr env and set env variable
             source /home/ec2-user/anaconda3/bin/activate nc2zarr
+            
+            pip install --upgrade pip
+            pip install --upgrade pandas
+            pip install h5netcdf
+            
             conda env config vars set PYTHONPATH='/home/ec2-user/SageMaker/nc2zarr/processors'
             
             # install nc2zarr
