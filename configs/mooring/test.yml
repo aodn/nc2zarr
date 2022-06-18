@@ -37,6 +37,6 @@ process:
 
 # Configuration of output
 output:
-  path: s3://s3-vhnguyen-nc2zarr-3.dev.aodn.org.au/zarrs/mooring/from-local/test_temp_velocity.zarr
+  path: s3://s3-vhnguyen-nc2zarr-3.dev.aodn.org.au/zarrs/mooring/test_temp_velocity.zarr
   consolidated: true
   overwrite: true
