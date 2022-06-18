@@ -56,9 +56,6 @@ Resources:
             # install nc2zarr env
             echo ". /home/ec2-user/anaconda3/etc/profile.d/conda.sh" >> ~/.bashrc
             conda env create -f https://raw.githubusercontent.com/vietnguyengit/nc2zarr/main/environment.yml
-            pip install --upgrade pip
-            pip install --upgrade pandas
-            pip install h5netcdf
             
             # activate nc2zarr env and set env variable
             source /home/ec2-user/anaconda3/bin/activate nc2zarr
