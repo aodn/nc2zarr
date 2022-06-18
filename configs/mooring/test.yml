@@ -1,5 +1,5 @@
 # validate this config, set false to actually produce zarr files
-dry_run: true
+dry_run: false
 
 # print out log - 0 1 2
 verbosity: 2
@@ -37,6 +37,6 @@ process:
 
 # Configuration of output
 output:
-  path: s3://imos-data-pixeldrill/viet/mooring/from-local/test_temp_velocity.zarr
+  path: s3://s3-vhnguyen-nc2zarr-3.dev.aodn.org.au/zarrs/mooring/from-local/test_temp_velocity.zarr
   consolidated: true
   overwrite: true
