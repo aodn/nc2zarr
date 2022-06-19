@@ -11,7 +11,7 @@ Resources:
       LifecycleConfigName: !GetAtt LifeCycleConfig.NotebookInstanceLifecycleConfigName
       NotebookInstanceName: !Ref AWS::StackName
       RoleArn: arn:aws:iam::615645230945:role/service-role/AmazonSageMaker-ExecutionRole-20210623T113797
-      VolumeSizeInGB: 30
+      VolumeSizeInGB: 1024
       Tags:
         - Key: "Managed"
           Value: "cloudformation"
