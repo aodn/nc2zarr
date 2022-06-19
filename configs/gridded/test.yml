@@ -7,7 +7,7 @@ verbosity: 2
 # inputs
 input:
   paths:
-    - s3://imos-data-pixeldrill/IMOS/SRS/SST/ghrsst/L3S-1d/ngt/2020/*.nc
+    - s3://imos-data/IMOS/SRS/SST/ghrsst/L3S-1d/ngt/2020/*.nc
   sort_by: path # set to name individual files instead of the whole path
   # select variables from netcdf
   variables:
@@ -49,6 +49,6 @@ process:
 
 # Configuration of output
 output:
-  path: s3://imos-data-pixeldrill/viet/gridded/test.zarr
+  path: s3://s3-vhnguyen-nc2zarr-3.dev.aodn.org.au/zarrs/gridded/test.zarr
   consolidated: true
   overwrite: true
