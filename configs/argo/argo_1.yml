@@ -6,7 +6,7 @@ verbosity: 2
 
 # inputs
 input:
-  paths: ./inputs/argo/1901126/profiles/*.nc
+  paths: s3://imos-data/IMOS/Argo/dac/csiro/1901126/profiles/*.nc
   sort_by: path # set to name individual files instead of the whole path
   # select variables from netcdf
   variables:
@@ -93,6 +93,6 @@ process:
 
 # Configuration of output
 output:
-  path: ./outputs/argo/test/test.zarr
+  path: s3://s3-vhnguyen-nc2zarr-3.dev.aodn.org.au/zarrs/argo/test_1.zarr
   consolidated: true
   overwrite: true

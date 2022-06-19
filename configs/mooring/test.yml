@@ -1,5 +1,5 @@
 # validate this config, set false to actually produce zarr files
-dry_run: false
+dry_run: true
 
 # print out log - 0 1 2
 verbosity: 2
