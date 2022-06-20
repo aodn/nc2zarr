@@ -1,20 +1,20 @@
 # validate this config, set false to actually produce zarr files
-dry_run: true
+dry_run: false
 
 # print out log - 0 1 2
 verbosity: 2
 
 # inputs
 input:
-  paths: s3://imos-data/IMOS/Argo/dac/csiro/1901126/profiles/*.nc
+  paths: ./inputs/argo/1901126/D1901126_334.nc
   sort_by: path # set to name individual files instead of the whole path
   # select variables from netcdf
   variables:
-#    - PRES
-#    - TEMP
-#    - JULD
-#    - PSAL
-##    - JULD_QC
+    - PRES
+    - TEMP
+    - JULD
+    - PSAL
+#    - JULD_QC
 #    - PSAL_QC
 #    - PRES_QC
 #    - TEMP_QC
@@ -76,7 +76,7 @@ input:
 #    - SCIENTIFIC_CALIB_COEFFICIENT
 #  custom_preprocessor: argo_preprocessor:preprocess_sample
   # read input files as single block
-  multi_file: true
+  multi_file: false
   # concat dimension
   concat_dim: "LONGITUDE"
   # xarray engine
@@ -93,6 +93,6 @@ process:
 
 # Configuration of output
 output:
-  path: s3://s3-vhnguyen-nc2zarr-3.dev.aodn.org.au/zarrs/argo/test_1.zarr
+  path: s3://imos-data-pixeldrill/zarrs/viet-test/argo/D1901126_334/
   consolidated: true
   overwrite: true
