@@ -27,7 +27,7 @@ for file in all_files:
     with open(config_file, "w") as ostream:
         yaml.dump(ymldoc, ostream, default_flow_style=False, sort_keys=False)
 
-    subprocess.run(["nc2zarr", "-c", "./configs/argo/argo_1.yml"])
+    subprocess.run(["nc2zarr", "-c", config_file])
 
 print('\n*********************************************')
 print("---------- Total: %.2f seconds ----------" % (time.time() - start_time))
