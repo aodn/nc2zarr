@@ -3,7 +3,7 @@ input:
   concat_dim: LONGITUDE
   engine: h5netcdf
   multi_file: false
-  paths: s3://imos-data-pixeldrill/viet-test/argo/converted/D1901126_005.nc
+  paths: s3://imos-data-pixeldrill/viet-test/argo/converted/D1901126_347.nc
   prefetch_chunks: true
   sort_by: path
   variables:
@@ -74,7 +74,7 @@ input:
 output:
   consolidated: true
   overwrite: true
-  path: s3://imos-data-pixeldrill/zarrs/viet-test/argo/D1901126_005/
+  path: s3://imos-data-pixeldrill/zarrs/viet-test/argo/D1901126_347/
 process:
   rechunk:
     '*':

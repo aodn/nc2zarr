@@ -4,7 +4,9 @@ import re
 import subprocess
 import fsspec
 import os
+import time
 
+start_time = time.time()
 config_file = "./configs/argo/argo_1.yml"
 fs = fsspec.filesystem('s3', anon=True)
 all_files = fs.glob(f's3://imos-data-pixeldrill/viet-test/argo/converted/*.nc')
@@ -28,3 +30,5 @@ for file in all_files:
     subprocess.run(["nc2zarr", "-c", "./configs/argo/argo_1.yml"])
 
 print('\n*********************************************')
+print("---------- Total: %.2f seconds ----------" % (time.time() - start_time))
+print('*********************************************')
