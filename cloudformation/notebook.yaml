@@ -63,6 +63,7 @@ Resources:
             pip install --upgrade pip
             pip install --upgrade pandas
             pip install h5netcdf
+            pip install pyyaml
             
             conda env config vars set PYTHONPATH='/home/ec2-user/SageMaker/nc2zarr/processors'
             

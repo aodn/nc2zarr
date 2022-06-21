@@ -1,98 +1,83 @@
-# validate this config, set false to actually produce zarr files
-dry_run: false
-
-# print out log - 0 1 2
-verbosity: 2
-
-# inputs
+dry_run: true
 input:
-  paths: ./inputs/argo/1901126/D1901126_334.nc
-  sort_by: path # set to name individual files instead of the whole path
-  # select variables from netcdf
-  variables:
-    - PRES
-    - TEMP
-    - JULD
-    - PSAL
-#    - JULD_QC
-#    - PSAL_QC
-#    - PRES_QC
-#    - TEMP_QC
-#    - PI_NAME
-    - LATITUDE
-    - LONGITUDE
-#    - PARAMETER
-#    - DATA_MODE
-#    - DIRECTION
-#    - DATA_TYPE
-#    - DATA_CENTRE
-#    - DATE_UPDATE
-#    - POSITION_QC
-#    - CYCLE_NUMBER
-#    - HISTORY_DATE
-#    - DC_REFERENCE
-#    - PROJECT_NAME
-#    - HISTORY_STEP
-#    - JULD_LOCATION
-#    - DATE_CREATION
-#    - TEMP_ADJUSTED
-#    - PLATFORM_TYPE
-#    - PRES_ADJUSTED
-#    - PSAL_ADJUSTED
-#    - WMO_INST_TYPE
-#    - HISTORY_ACTION
-#    - HISTORY_QCTEST
-#    - FORMAT_VERSION
-#    - PROFILE_PSAL_QC
-#    - FLOAT_SERIAL_NO
-#    - PROFILE_TEMP_QC
-#    - PLATFORM_NUMBER
-#    - PROFILE_PRES_QC
-#    - HANDBOOK_VERSION
-#    - TEMP_ADJUSTED_QC
-#    - PSAL_ADJUSTED_QC
-#    - HISTORY_SOFTWARE
-#    - FIRMWARE_VERSION
-#    - PRES_ADJUSTED_QC
-#    - HISTORY_PARAMETER
-#    - HISTORY_REFERENCE
-#    - HISTORY_STOP_PRES
-#    - STATION_PARAMETERS
-#    - POSITIONING_SYSTEM
-#    - HISTORY_START_PRES
-#    - HISTORY_INSTITUTION
-#    - PRES_ADJUSTED_ERROR
-#    - TEMP_ADJUSTED_ERROR
-#    - PSAL_ADJUSTED_ERROR
-#    - REFERENCE_DATE_TIME
-#    - DATA_STATE_INDICATOR
-#    - SCIENTIFIC_CALIB_DATE
-#    - CONFIG_MISSION_NUMBER
-#    - HISTORY_PREVIOUS_VALUE
-#    - HISTORY_SOFTWARE_RELEASE
-#    - VERTICAL_SAMPLING_SCHEME
-#    - SCIENTIFIC_CALIB_COMMENT
-#    - SCIENTIFIC_CALIB_EQUATION
-#    - SCIENTIFIC_CALIB_COEFFICIENT
-#  custom_preprocessor: argo_preprocessor:preprocess_sample
-  # read input files as single block
+  concat_dim: LONGITUDE
+  engine: h5netcdf
   multi_file: false
-  # concat dimension
-  concat_dim: "LONGITUDE"
-  # xarray engine
-  engine: "netcdf4"
-  # turn this on for very large inputs -> force using Dask array, avoid memory issues
+  paths: s3://imos-data-pixeldrill/viet-test/argo/converted/D1901126_005.nc
   prefetch_chunks: true
-
-# Configuration of input to output processing
-process:
-  rechunk:
-    "*":
-      LONGITUDE: null
-    LONGITUDE: "input"
-
-# Configuration of output
+  sort_by: path
+  variables:
+  - PRES
+  - TEMP
+  - JULD
+  - PSAL
+  - JULD_QC
+  - PSAL_QC
+  - PRES_QC
+  - TEMP_QC
+  - PI_NAME
+  - LATITUDE
+  - LONGITUDE
+  - PARAMETER
+  - DATA_MODE
+  - DIRECTION
+  - DATA_TYPE
+  - DATA_CENTRE
+  - DATE_UPDATE
+  - POSITION_QC
+  - CYCLE_NUMBER
+  - HISTORY_DATE
+  - DC_REFERENCE
+  - PROJECT_NAME
+  - HISTORY_STEP
+  - JULD_LOCATION
+  - DATE_CREATION
+  - TEMP_ADJUSTED
+  - PLATFORM_TYPE
+  - PRES_ADJUSTED
+  - PSAL_ADJUSTED
+  - WMO_INST_TYPE
+  - HISTORY_ACTION
+  - HISTORY_QCTEST
+  - FORMAT_VERSION
+  - PROFILE_PSAL_QC
+  - FLOAT_SERIAL_NO
+  - PROFILE_TEMP_QC
+  - PLATFORM_NUMBER
+  - PROFILE_PRES_QC
+  - HANDBOOK_VERSION
+  - TEMP_ADJUSTED_QC
+  - PSAL_ADJUSTED_QC
+  - HISTORY_SOFTWARE
+  - FIRMWARE_VERSION
+  - PRES_ADJUSTED_QC
+  - HISTORY_PARAMETER
+  - HISTORY_REFERENCE
+  - HISTORY_STOP_PRES
+  - STATION_PARAMETERS
+  - POSITIONING_SYSTEM
+  - HISTORY_START_PRES
+  - HISTORY_INSTITUTION
+  - PRES_ADJUSTED_ERROR
+  - TEMP_ADJUSTED_ERROR
+  - PSAL_ADJUSTED_ERROR
+  - REFERENCE_DATE_TIME
+  - DATA_STATE_INDICATOR
+  - SCIENTIFIC_CALIB_DATE
+  - CONFIG_MISSION_NUMBER
+  - HISTORY_PREVIOUS_VALUE
+  - HISTORY_SOFTWARE_RELEASE
+  - VERTICAL_SAMPLING_SCHEME
+  - SCIENTIFIC_CALIB_COMMENT
+  - SCIENTIFIC_CALIB_EQUATION
+  - SCIENTIFIC_CALIB_COEFFICIENT
 output:
-  path: s3://imos-data-pixeldrill/zarrs/viet-test/argo/D1901126_334/
   consolidated: true
   overwrite: true
+  path: s3://imos-data-pixeldrill/zarrs/viet-test/argo/D1901126_005/
+process:
+  rechunk:
+    '*':
+      LONGITUDE: null
+    LONGITUDE: input
+verbosity: 1
