@@ -20,3 +20,5 @@ dependencies:
   # Testing
   - pytest
   - pytest-cov
+  - seawater
+ 
