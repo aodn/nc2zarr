@@ -17,3 +17,4 @@ pickle5
 pandas==1.3.5
 retry
 pyyaml
+seawater
