@@ -26,6 +26,7 @@ RUN mamba install -y \
     dask \
     lz4 \
     numpy \
+    seawater \
     pandas \
     tini==0.18.0 \
     cachey \
