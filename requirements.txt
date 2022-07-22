@@ -8,6 +8,7 @@ toolz==0.11.2
 tornado==6.1
 pandas==1.4.2
 numpy==1.21.5
+graphviz==0.8.1
 click
 dask-cloudprovider
 jedi
@@ -27,3 +28,6 @@ netCDF4
 tqdm
 zarr
 dask-labextension
+aioboto3
+aiobotocore[boto3]
+urllib3
