@@ -8,13 +8,6 @@ ARG python=3.8
 ENV PATH /opt/conda/bin:$PATH
 ENV PYTHON_VERSION=${python}
 
-# Create the environment:
-COPY environment.yml /tmp/
-RUN conda env create -f /tmp/environment.yml
-
-# Activate the environment, and make sure it's activated:
-RUN source activate nc2zarr
-
 RUN mamba install -y \
     python=${PYTHON_VERSION} \
     bokeh \
@@ -43,6 +36,13 @@ COPY requirements.txt /tmp/
 RUN apt-get update && apt-get -y install gcc iputils-ping vim nano libsqlite3-dev
 RUN python -m pip install --upgrade pip \
     && pip install --requirement /tmp/requirements.txt
+    
+# Create the environment:
+COPY environment.yml /tmp/
+RUN conda env create -f /tmp/environment.yml
+
+# Activate the environment, and make sure it's activated:
+RUN source activate nc2zarr
 
 # Install nc2zarr
 WORKDIR ./nc2zarr
