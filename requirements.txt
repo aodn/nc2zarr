@@ -2,9 +2,9 @@ xarray[complete]
 git+https://github.com/intake/kerchunk.git@0.0.5
 zarr
 click
-dask-cloudprovider==2022.4.1
-distributed==2022.4.1
-dask-cloudprovider==2022.4.1
+dask-cloudprovider
+distributed
+dask-cloudprovider
 jedi
 s3fs
 fsspec
