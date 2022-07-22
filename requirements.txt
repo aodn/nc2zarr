@@ -3,7 +3,6 @@ git+https://github.com/intake/kerchunk.git@0.0.5
 zarr
 click
 dask-cloudprovider
-distributed
 dask-cloudprovider
 jedi
 s3fs
@@ -12,9 +11,7 @@ h5netcdf
 numcodecs
 blosc
 lz4
-cloudpickle
 pickle5
-pandas
 retry
 pyyaml
 seawater
