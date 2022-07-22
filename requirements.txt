@@ -1,8 +1,8 @@
 xarray[complete]
 git+https://github.com/intake/kerchunk.git
 cloudpickle==2.0.0
-dask==2022.02.1
-distributed==2022.2.1
+dask==2021.11.1
+distributed==2021.11.1
 msgpack==1.0.2
 toolz==0.11.2
 tornado==6.1
