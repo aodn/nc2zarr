@@ -18,7 +18,6 @@ pandas
 retry
 pyyaml
 seawater
-graphviz
 awswrangler
 ecmwflibs
 netCDF4
