@@ -62,24 +62,24 @@ Resources:
             nohup pip install -r extra-requirements.txt --upgrade
             source /home/ec2-user/anaconda3/bin/deactivate
             
-            # # install nc2zarr env
-            # echo ". /home/ec2-user/anaconda3/etc/profile.d/conda.sh" >> ~/.bashrc
-            # nohup conda env create -f https://raw.githubusercontent.com/vietnguyengit/nc2zarr/main/environment.yml
+            # install nc2zarr env
+            echo ". /home/ec2-user/anaconda3/etc/profile.d/conda.sh" >> ~/.bashrc
+            nohup conda env create -f https://raw.githubusercontent.com/vietnguyengit/nc2zarr/main/environment.yml
             
-            # # activate nc2zarr env and set env variable
-            # source /home/ec2-user/anaconda3/bin/activate nc2zarr
+            # activate nc2zarr env and set env variable
+            source /home/ec2-user/anaconda3/bin/activate nc2zarr
             
-            # pip install --upgrade pip
-            # pip install --upgrade pandas
-            # pip install h5netcdf
-            # pip install pyyaml
+            pip install --upgrade pip
+            pip install --upgrade pandas
+            pip install h5netcdf
+            pip install pyyaml
             
-            # conda env config vars set PYTHONPATH='/home/ec2-user/SageMaker/nc2zarr/processors'
+            conda env config vars set PYTHONPATH='/home/ec2-user/SageMaker/nc2zarr/processors'
             
-            # # install nc2zarr
-            # git clone https://github.com/vietnguyengit/nc2zarr.git
-            # cd nc2zarr
-            # python setup.py develop
-            # source /home/ec2-user/anaconda3/bin/deactivate
+            # install nc2zarr
+            git clone https://github.com/vietnguyengit/nc2zarr.git
+            cd nc2zarr
+            python setup.py develop
+            source /home/ec2-user/anaconda3/bin/deactivate
             
             EOF
