@@ -3,7 +3,7 @@ FROM $BASE_CONTAINER
 
 SHELL ["/bin/bash", "-c"]
 
-ARG python=3.7
+ARG python=3.8
 
 ENV PATH /opt/conda/bin:$PATH
 ENV PYTHON_VERSION=${python}
@@ -18,7 +18,7 @@ RUN source activate nc2zarr
 RUN mamba install -y \
     python=${PYTHON_VERSION} \
     bokeh \
-    click==8.0.4 \
+    click \
     nomkl \
     cmake \
     python-blosc \
@@ -28,7 +28,7 @@ RUN mamba install -y \
     numpy \
     seawater \
     pandas \
-    tini==0.18.0 \
+    tini \
     cachey \
     streamz \
     && mamba clean -tipy \
