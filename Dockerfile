@@ -8,12 +8,11 @@ ARG python=3.8
 ENV PATH /opt/conda/bin:$PATH
 ENV PYTHON_VERSION=${python}
 
-RUN conda install -c conda-forge -y nodejs
-RUN conda install -c anaconda -y boto3
-
 RUN mamba install -y \
     python=${PYTHON_VERSION} \
     bokeh \
+    boto3 \
+    nodejs \
     click \
     nomkl \
     cmake \
